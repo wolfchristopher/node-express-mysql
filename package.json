@@ -1,16 +1,32 @@
 {
   "name": "node-express-mysql",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "type": "module",
   "private": true,
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testRegex": "((\\.|/*.)(test)\\.js?$"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server.js",
+    "test": "jest"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jade": "^0.29.0",
-    "morgan": "~1.9.1"
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/node":"^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2"
   }
 }
