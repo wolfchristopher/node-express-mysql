@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  node_db:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=node_db
+      - MYSQL_USER=user 
+      - MYSQL_PASSWORD=password 
+      - MYSQL_ROOT_PASSWORD=password1
+      - MYSQL_HOST=127.0.0.1
+    ports:
+      - '3307:3306'
+    expose:
+      - '3307'
+    volumes:
+      - node_db:/var/lib/mysql
+  
+  web:
+    depends_on:
+      - node_db
+    build: .
+    volumes:
+      - .:/src
+    command: node server.js
+    environment:
+      - HOST=node_db
+      - USER=user
+      - USER_PASS=password
+      - DB=node_db
+    ports:
+      - '5000:5001'
+
+volumes:
+  node_db:
