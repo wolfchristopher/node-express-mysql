@@ -25,5 +25,22 @@ describe("database", () => {
             const consoleSpy = jest.spyOn(console, "log");
             expect(consoleSpy).toHaveBeenCalledWith("Created People Table");
         })
+        it("should call console.log on error", async () => {
+            let error = new Error("SOME_ERROR_MESSAGE");
+            mockQuery.mockImplementationOnce(() => {throw error});
+            await database.createPeopleTable();
+            // const consoleSpy = jest.spyOn(console, "log").mockImplementation();
+            expect(console.log).toBeCalledTimes(1);
+        });
+        it("should should console.log a error message on error", async () => {
+            let error = new Error("SOME_ERROR_MESSAGE");
+            mockQuery.mockImplementationOnce(() => {throw error});
+            await database.createPeopleTable();
+            const consoleSpy = jest.spyOn(console, "log").mockImplementation();
+            expect(consoleSpy).toHaveBeenCalledWith(
+                "Error Creating People Table",
+                error
+            );
+        });
     });
 });

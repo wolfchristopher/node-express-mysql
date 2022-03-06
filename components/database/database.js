@@ -16,9 +16,12 @@ async function createPeopleTable() {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`;
-
-    await connection.promise().query(sql);
-    console.log("Created People Table");
+    try {
+        await connection.promise().query(sql);
+        console.log("Created People Table");
+    } catch (error) {
+        console.log("Error Creating People Table", error);
+    }
 };
 
 export default {createPeopleTable};
