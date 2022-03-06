@@ -6,7 +6,7 @@ const createPeopleTable = jest.fn();
 
 const app = makeApp({
     createPeopleTable
-})
+});
 
 it("GET Health Endpoint", async () => {
     await request(app)
