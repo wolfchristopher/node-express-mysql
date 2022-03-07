@@ -1,4 +1,4 @@
-import databaseResponseCheck from ".peopleUtils.js";
+import databaseResponseCheck from "./peopleUtils.js";
 
 /* POST BATCH people */
 function peopleBatchPost(database, app) {
