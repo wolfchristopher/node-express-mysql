@@ -1,5 +1,6 @@
 import express from "express";
 import healthEndpoint from "./components/health/health.js";
+import peopleBatch from "./components/people/peopleBatch.js";
 
 function makeApp(database) {
   var app = express();
@@ -7,8 +8,9 @@ function makeApp(database) {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  database.createPeopleTable()
-  healthEndpoint(app)
+  database.createPeopleTable();
+  healthEndpoint(app);
+  peopleBatch.peopleBatchPost(database, app);
   
   return app
 }
