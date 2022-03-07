@@ -1,4 +1,5 @@
 import express from "express";
+import healthEndpoint from "./components/health/health.js";
 
 function makeApp(database) {
   var app = express();
@@ -7,7 +8,9 @@ function makeApp(database) {
   app.use(express.urlencoded({ extended: false }));
 
   database.createPeopleTable()
+  healthEndpoint(app)
   
+  return app
 }
 
 export default makeApp;
